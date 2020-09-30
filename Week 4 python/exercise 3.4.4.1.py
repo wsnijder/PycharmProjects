@@ -1,17 +1,17 @@
 dag = int(input("Which day is it today"))
 
 if dag == 0:
-    print("sunday")
+    print("Sunday")
 if dag == 1:
-    print("monday")
+    print("Monday")
 if dag == 2:
-    print("tuesday")
+    print("Tuesday")
 if dag == 3:
-    print("wednesday")
+    print("Wednesday")
 if dag == 4:
-    print("thursday")
+    print("Thursday")
 if dag == 5:
-    print("friday")
+    print("Friday")
 if dag == 6:
-    print("saturday")
+    print("Saturday")
 
