@@ -4,4 +4,5 @@ def sum_to(n):
 
 answer = int(input("What number?"))
 t = sum_to(answer)
-print("The asnwer is", t)
+print("The answer is", t)
+
