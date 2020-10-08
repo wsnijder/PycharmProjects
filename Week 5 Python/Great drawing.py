@@ -14,6 +14,6 @@ def draw_square(animal, size):
 for index in range(90):
     draw_square(tess, index * 5)
     tess.left(6)
-    tess.speed(0)
+    tess.speed(7)
 
 window.exitonclick()
