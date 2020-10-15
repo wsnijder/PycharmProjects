@@ -1,4 +1,4 @@
-# two turtles created, color only applies to Alex
+# two turtles created
 
 import turtle
 
@@ -6,5 +6,10 @@ tess = turtle.Turtle()
 alex = tess
 alex.color("hotpink")
 
-alex.forward(50)
-tess.forward(50)
+if tess is alex:
+    print("there is one turtle created")
+else: print("there are two turtles created")
+
+# color applies to both turtles since it is aliased and not cloned
+
+alex.forward(100)
