@@ -2,15 +2,24 @@ poem = """Reinder Evert is a very good looking guy who is really attractive and 
 outside the house and therefore he has a lack of vitamin D"""
 
 lossewoorden = poem.split(" ")
-wordcount = len(lossewoorden)
-ecount = 0
-epercentage = ecount/wordcount *100
 
-for letter in poem:
-    if "e" in lossewoorden:
-        ecount = ecount + 1
+def count_words(text):
+    return len(lossewoorden)
 
-print("Your text contains", wordcount, "words, of which", ecount, "(" + epercentage + "%) words contain an e")
+def count_words_containing(text, letter):
+    count = 0
+    for word in lossewoorden:
+        if letter in word:
+            count += 1
+    return count
+
+letter = "e"
+count = count_words(poem)
+ecount = count_words_containing(poem, letter)
+epercentage = (ecount/count) *100
+
+print("Your text containt {} words, of which {} contain an e, which is about {} %".format(count, ecount, epercentage))
+
 
 
 
