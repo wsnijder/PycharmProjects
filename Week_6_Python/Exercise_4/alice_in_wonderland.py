@@ -1,4 +1,5 @@
 #retrieve the book
+import urllib.request
 
 url = "https://www.gutenberg.org/files/11/11-0.txt"
 file_name = "alice.txt"
@@ -18,7 +19,7 @@ for word in words:
     word = word.strip("!\"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~")
     #Note that I removed the - sign since it is a single word in this case
     if len(word) > 0 and word[0].isalpha():         #isalpha means whether it is in the alphabet
-        word_count(word) = word_count.get(word, 0) + 1
+        word_count[word] = word_count.get(word, 0) + 1
 
 #get the longest word
 longest_word = ""
