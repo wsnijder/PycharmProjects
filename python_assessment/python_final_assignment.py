@@ -25,7 +25,6 @@ out.write("-------------------------------------------------------" + "\n")
 
 # Requesting clientsname. If in clients.csv, address is retrieved. Otherwise manually fill it in, and save in clients.csv.
 print("Check our client databese for the clientname of exising clients.")
-os.startfile('clients.csv')
 clientname = input("What is the clientname?")
 df_clients = pd.read_csv("clients.csv")
 if clientname in df_clients["clientname"].values:
@@ -61,7 +60,6 @@ out.write("-------------------------------------------------------" + "\n")
 howmanyorder = int(input("How many total orders?"))
 totaltotal = []
 print("Check our list of products in products.csv")
-os.startfile('products.csv')
 for x in range(howmanyorder):
     productnumber = input("What is the productnumber?")
     df_products = pd.read_csv("products.csv")
@@ -93,7 +91,6 @@ out.write("-------------------------------------------------------" + "\n")
 
 # closing en reopening invoice in totalinvoice.txt
 out.close()
-os.startfile("totalinvoice.txt")
 
 verification = input("Press 1 if this information is right.")
 if verification != '1':
