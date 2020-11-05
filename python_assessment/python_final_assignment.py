@@ -1,5 +1,5 @@
 import pandas as pd
-import os
+import subprocess
 
 # Starting point question for making a invoice.
 startingpoint = int(input("Hello! Press 1 to start invoice."))
@@ -24,7 +24,9 @@ out.write("Date:" + " " + str(today) + "\n")
 out.write("-------------------------------------------------------" + "\n")
 
 # Requesting clientsname. If in clients.csv, address is retrieved. Otherwise manually fill it in, and save in clients.csv.
-print("Check our client databese for the clientname of exising clients.")
+print("Check our client database for the clientname of existing clients.")
+FileName = "clients.csv"
+subprocess.call(['open', FileName])
 clientname = input("What is the clientname?")
 df_clients = pd.read_csv("clients.csv")
 if clientname in df_clients["clientname"].values:
@@ -60,6 +62,8 @@ out.write("-------------------------------------------------------" + "\n")
 howmanyorder = int(input("How many total orders?"))
 totaltotal = []
 print("Check our list of products in products.csv")
+filename_product = "products.csv"
+subprocess.call(['open', filename_product])
 for x in range(howmanyorder):
     productnumber = input("What is the productnumber?")
     df_products = pd.read_csv("products.csv")
@@ -91,6 +95,8 @@ out.write("-------------------------------------------------------" + "\n")
 
 # closing en reopening invoice in totalinvoice.txt
 out.close()
+filename_invoice = "totalinvoice.txt"
+subprocess.call(['open', filename_invoice])
 
 verification = input("Press 1 if this information is right.")
 if verification != '1':
