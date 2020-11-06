@@ -28,7 +28,7 @@ print("Check our client database for the client name of existing clients.")
 subprocess.call(['open', 'clients.csv'])
 clientname = input("What is the client name?")
 df_clients = pd.read_csv("clients.csv")
-if clientname in df_clients["client name"].values:
+if clientname in df_clients["clientname"].values:
     data_streetnumber = df_clients[df_clients.clientname == clientname]
     streetnumber = (data_streetnumber['street_number'].tolist()[0])
     print("Street number: " + str(streetnumber))
