@@ -14,8 +14,8 @@ df = pd.read_csv("invoices.csv")
 dat = df.iloc[[-1]]
 invoicenumber = (dat['invoicenumber'].tolist()[0]) + 1
 out.write("-------------------------------------------------------" + "\n")
-print("The invoicenumber is: " + str(invoicenumber))
-out.write("Invoicenumber: " + str(invoicenumber) + "\n")
+print("The invoice number is: " + str(invoicenumber))
+out.write("Invoice number: " + str(invoicenumber) + "\n")
 
 # Dates
 from datetime import date
@@ -26,22 +26,22 @@ out.write("-------------------------------------------------------" + "\n")
 # Requesting clientsname. If in clients.csv, address is retrieved. Otherwise manually fill it in, and save in clients.csv.
 print("Check our client database for the client name of existing clients.")
 subprocess.call(['open', 'clients.csv'])
-clientname = input("What is the clientname?")
+clientname = input("What is the client name?")
 df_clients = pd.read_csv("clients.csv")
-if clientname in df_clients["clientname"].values:
+if clientname in df_clients["client name"].values:
     data_streetnumber = df_clients[df_clients.clientname == clientname]
     streetnumber = (data_streetnumber['street_number'].tolist()[0])
-    print("Streetnumber: " + str(streetnumber))
+    print("Street number: " + str(streetnumber))
     data_zipcode = df_clients[df_clients.clientname == clientname]
     zipcode = (data_zipcode['zipcode'].tolist()[0])
     print("Zipcode: " + str(zipcode))
     inputquestion = input("Press 1 if correct.")
     if inputquestion != "1":
-        streetnumber = input("What is clients streetname plus housenumber?")
+        streetnumber = input("What is clients street plus number?")
         zipcode = input("What is clients zipcode?")
         print("Client has been added to clients.csv")
 else:
-    streetnumber = input("What is clients streetname plus housenumber?")
+    streetnumber = input("What is clients street plus number?")
     zipcode = input("What is clients zipcode?")
     print("Client has been added to clients.csv")
     # Saving data for new client in clients.csv
@@ -53,7 +53,7 @@ else:
     row_contentss = [clientname, streetnumber, zipcode]
     append_list_as_roww('clients.csv', row_contentss)
 out.write("Name: " + str(clientname) + "\n")
-out.write("Streetname & housenumber: " + str(streetnumber) + "\n")
+out.write("Street & number: " + str(streetnumber) + "\n")
 out.write("Zipcode: " + str(zipcode) + "\n")
 out.write("-------------------------------------------------------" + "\n")
 
@@ -63,7 +63,7 @@ totaltotal = []
 print("Check our list of products in products.csv")
 subprocess.call(['open', 'products.csv'])
 for x in range(howmanyorder):
-    productnumber = input("What is the productnumber?")
+    productnumber = input("What is the product number?")
     df_products = pd.read_csv("products.csv")
     if int(productnumber) in df_products["productnumber"].values:
         data_products = df_products[df_products.productnumber == int(productnumber)]
