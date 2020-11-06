@@ -2,7 +2,7 @@ import pandas as pd
 import subprocess
 
 # Starting point question for making a invoice.
-startingpoint = int(input("Hello! Press 1 to start invoice."))
+startingpoint = int(input("Welcome to Invoice Generator of Fruitstore Inc.! Press 1 to start your invoice."))
 if startingpoint != 1:
     exit()
 print("Alright, let's go!")
@@ -17,16 +17,15 @@ out.write("-------------------------------------------------------" + "\n")
 print("The invoicenumber is: " + str(invoicenumber))
 out.write("Invoicenumber: " + str(invoicenumber) + "\n")
 
-# Date
+# Dates
 from datetime import date
 today = date.today()
 out.write("Date:" + " " + str(today) + "\n")
 out.write("-------------------------------------------------------" + "\n")
 
 # Requesting clientsname. If in clients.csv, address is retrieved. Otherwise manually fill it in, and save in clients.csv.
-print("Check our client database for the clientname of existing clients.")
-FileName = "clients.csv"
-subprocess.call(['open', FileName])
+print("Check our client database for the client name of existing clients.")
+subprocess.call(['open', 'clients.csv'])
 clientname = input("What is the clientname?")
 df_clients = pd.read_csv("clients.csv")
 if clientname in df_clients["clientname"].values:
@@ -62,8 +61,7 @@ out.write("-------------------------------------------------------" + "\n")
 howmanyorder = int(input("How many total orders?"))
 totaltotal = []
 print("Check our list of products in products.csv")
-filename_product = "products.csv"
-subprocess.call(['open', filename_product])
+subprocess.call(['open', 'products.csv'])
 for x in range(howmanyorder):
     productnumber = input("What is the productnumber?")
     df_products = pd.read_csv("products.csv")
@@ -73,17 +71,19 @@ for x in range(howmanyorder):
         data_description = df_products[df_products.productnumber == int(productnumber)]
         description = data_description['description'].tolist()[0]
     quantity = int(input("What is the quantity?"))
-    total = int(price) * quantity
+    total = price * quantity
     totaltotal.append(total)
     out.write("Product: " + str(description) + "\n")
     out.write("Price: " + str(price) + "\n")
     out.write("Quantity: " + str(quantity) + "\n")
-    out.write("Total price: " + str(total) + "\n")
+    formatted_total = "{:.2f}".format(total)
+    out.write("Total price: " + str(formatted_total) + " euro" + "\n")
     out.write("-------" + "\n")
 
 # Calculating total price
 tot = sum(totaltotal)
-out.write("Total price: " + str(tot) + " euro" + "\n")
+formatted_tot = "{:.2f}".format(tot)
+out.write("Total price: " + str(formatted_tot) + " euro" + "\n")
 
 # Calculating the total price with VAT.
 vatrate = int(input("What is the VAT percentage for this order?"))
@@ -95,8 +95,8 @@ out.write("-------------------------------------------------------" + "\n")
 
 # closing en reopening invoice in totalinvoice.txt
 out.close()
-filename_invoice = "totalinvoice.txt"
-subprocess.call(['open', filename_invoice])
+
+subprocess.call(['open', 'totalinvoice.txt'])
 
 verification = input("Press 1 if this information is right.")
 if verification != '1':
@@ -112,6 +112,3 @@ def append_list_as_row(file_name, list_of_elem):
         csv_writer.writerow(list_of_elem)
 row_contents = [invoicenumber, clientname, description, price, quantity, tot, vatrate, totalwithvat]
 append_list_as_row('invoices.csv', row_contents)
-
-filename_invoice = "totalinvoice.pdf"
-subprocess.call(['open', filename_invoice])
